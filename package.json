@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "My store",
+  "main": "index.js",
+  "scripts": {
+    "test": "n/a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmaddox/Bamazon.git"
+  },
+  "keywords": [
+    "js",
+    "inquirer",
+    "mysql"
+  ],
+  "author": "dmx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmaddox/Bamazon/issues"
+  },
+  "homepage": "https://github.com/dmaddox/Bamazon#readme",
+  "dependencies": {
+    "inquirer": "^4.0.1",
+    "mysql": "^2.15.0"
+  }
+}
