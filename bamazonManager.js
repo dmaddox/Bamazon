@@ -64,13 +64,22 @@ function viewProducts() {
 	      	};
 	      	managerMenu();
 	    }// end of query's callback function
-    );
+    ); // end of query function
 };
 
 
 // If a manager selects View Low Inventory, then it should list all items with an inventory count lower than five.
 function viewLowInv() {
-
+	var query = connection.query(
+	    "SELECT* FROM products WHERE stock_quantity < 5;",
+	    function(err, res) {
+	    	console.log("Low Inventory");
+	      	for (i = 0; i < res.length; i++) {
+	      		console.log(res[i].item_id + "  |  " + res[i].product_name + "  |  " + res[i].price + "  |  " + res[i].stock_quantity );
+	      	};
+	      	managerMenu();
+	    }// end of query's callback function
+    ); // end of query function
 };
 
 // If a manager selects Add to Inventory, your app should display a prompt that will let the manager "add more" of any item currently in the store.
