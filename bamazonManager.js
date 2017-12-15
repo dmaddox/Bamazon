@@ -84,6 +84,27 @@ function viewLowInv() {
 
 // If a manager selects Add to Inventory, your app should display a prompt that will let the manager "add more" of any item currently in the store.
 function addToInv() {
+	// Ask user which of a list of items in the store (+ their quantity) would they like to add quantity to
+	inquirer.prompt([
+	      {
+	        name: "id",
+	        message: "Input the ID associated with a product to increase its quantity by 1."
+	      },
+	]).then(function(input) {
+		// Once the user has selected the product, increase its quantity by one.
+	 		// store the selected product id in a variable
+	 		var productId = input.id;
+	 		// variables to construct the mySQL query
+	 		var qUrl = "UPDATE products SET stock_quantity = stock_quantity + 1 WHERE item_id = " + productId;
+	 		// find the product associated from the database
+ 			var query = connection.query(qUrl, 
+ 				function(err, res) {
+ 			      	console.log("Quantity update confirmed.");
+		      		managerMenu();
+ 			    }// end of query's callback function
+ 		    ); // end of query function
+	});
+	// increase the quantity of that
 
 };
 
