@@ -96,7 +96,7 @@ function addToInv() {
 	 		var productId = input.id;
 	 		// variables to construct the mySQL query
 	 		var qUrl = "UPDATE products SET stock_quantity = stock_quantity + 1 WHERE item_id = " + productId;
-	 		// find the product associated from the database
+	 		// update the associated product's quantity by 1
  			var query = connection.query(qUrl, 
  				function(err, res) {
  			      	console.log("Quantity update confirmed.");
@@ -104,11 +104,39 @@ function addToInv() {
  			    }// end of query's callback function
  		    ); // end of query function
 	});
-	// increase the quantity of that
-
 };
 
 // If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
 function addProduct() {
-
+	// Ask the user to input the product details, one question at a time.
+	inquirer.prompt([
+	      {
+	        name: "product_name",
+	        message: "What product are you adding?"
+	      },
+	      {
+	        name: "department_name",
+	        message: "What department does it belong to?"
+	      },
+	      {
+	        name: "price",
+	        message: "What are you pricing the product at?"
+	      },
+	      {
+	        name: "stock_quantity",
+	        message: "How many would you like to add?"
+	      },
+	]).then(function(input) {
+ 		// variables to construct the mySQL query
+ 		
+ 		// var qUrl = "INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (\"" + input.product_name + "\", \"" + input.department_name + "\", \"" + input.price + "\", \"" + input.stock_quantity + "\")";
+ 		// update the associated product's quantity by 1
+			var query = connection.query("INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (?, ?, ?, ?)",
+			 [input.product_name, input.department_name, input.price, input.stock_quantity],
+				function(err, res) {
+			      	console.log( input.product_name + " have been added!");
+	      		managerMenu();
+			    }// end of query's callback function
+		    ); // end of query function
+	});
 };
